@@ -16,8 +16,8 @@ class QuizScreenState extends State<QuizScreen> {
         new Column(
           // This is our main screen
           children: <Widget>[
-            new Expanded(
-              child: new Material( // True Button
+            new Expanded( // True Button
+              child: new Material(
                 color: Colors.greenAccent,
                 child: new InkWell(
                   onTap: () => print("You answered true"),
@@ -27,7 +27,21 @@ class QuizScreenState extends State<QuizScreen> {
                     ),
                   ),
                 ),
-              ))
+              )
+            ),
+            new Expanded( // False Button
+                child: new Material(
+                  color: Colors.redAccent,
+                  child: new InkWell(
+                    onTap: () => print("You answered false"),
+                    child: new Center(
+                      child: new Container(
+                        child: new Text("False"),
+                      ),
+                    ),
+                  ),
+                )
+            )
           ],
         ),
       ],
