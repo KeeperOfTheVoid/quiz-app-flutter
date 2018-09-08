@@ -20,7 +20,7 @@ class QuizScreenState extends State<QuizScreen> {
           // This is our main screen
           children: <Widget>[
             new AnswerButton(true, () => print("You answered true")),
-            new QuestionText(),
+            new QuestionText("Pizza is nice", 1),
             new AnswerButton(false, () => print("You answered false"))
           ],
         ),
