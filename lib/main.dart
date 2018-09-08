@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import './screens/landing_screen.dart';
-import './screens/quiz_screen.dart';
-import './screens/score_screen.dart';
 
 void main() => runApp(new MyApp());
 
