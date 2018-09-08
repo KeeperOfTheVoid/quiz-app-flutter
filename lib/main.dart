@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './screens/landing_screen.dart';
 import './screens/quiz_screen.dart';
+import './screens/score_screen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: new LandingScreen(),
+      home: new ScoreScreen(5, 10),
     );
   }
 }
