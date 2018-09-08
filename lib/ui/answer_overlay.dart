@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class AnswerOverlay extends StatefulWidget {
   final bool _isCorrect;
+  final VoidCallback _onTap;
 
-  AnswerOverlay(this._isCorrect);
+  AnswerOverlay(this._isCorrect, this._onTap);
 
   @override
   State createState() => new AnswerOverlayState();
@@ -25,11 +26,17 @@ class AnswerOverlayState extends State<AnswerOverlay> with SingleTickerProviderS
   }
 
   @override
+  void dispose() {
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Material(
       color: Colors.black54,
       child: new InkWell(
-        onTap: () => print("You tapped the overlay!"),
+        onTap: () => widget._onTap(),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
