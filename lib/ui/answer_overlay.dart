@@ -26,6 +26,9 @@ class AnswerOverlayState extends State<AnswerOverlay> {
               ),
               child: new Icon(widget._isCorrect == true ? Icons.done : Icons.clear, size: 80.0,),
             ),
+            new Padding(
+                padding: new EdgeInsets.only(bottom: 20.0),
+            ),
             new Text(widget._isCorrect == true ? "Correct!" : "Wrong!", style: new TextStyle(color: Colors.white, fontSize: 30.0, ),)
           ],
         ),
