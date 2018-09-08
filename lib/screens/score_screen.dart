@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/landing_screen.dart';
+
 class ScoreScreen extends StatelessWidget {
   final int score;
   final int totalQuestions;
@@ -23,7 +25,10 @@ class ScoreScreen extends StatelessWidget {
               icon: new Icon(Icons.arrow_right),
               color: Colors.white,
               iconSize: 50.0,
-              onPressed: () => print("cool"),
+              onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                  new MaterialPageRoute(builder: (BuildContext context) => new LandingScreen()),
+                      (Route route) => route == null
+              ),
           )
         ],
       ),
