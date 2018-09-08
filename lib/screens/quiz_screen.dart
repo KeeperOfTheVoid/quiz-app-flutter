@@ -60,8 +60,9 @@ class QuizScreenState extends State<QuizScreen> {
             isCorrect,
             () {
               if (quiz.length == questionNumber) {
-                Navigator.of(context).push(
-                    new MaterialPageRoute(builder: (BuildContext context) => new ScoreScreen(quiz.score, quiz.length))
+                Navigator.of(context).pushAndRemoveUntil(
+                    new MaterialPageRoute(builder: (BuildContext context) => new ScoreScreen(quiz.score, quiz.length)),
+                    (Route route) => route == null
                 );
                 return;
               }
