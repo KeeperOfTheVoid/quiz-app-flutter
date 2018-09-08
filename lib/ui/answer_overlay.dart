@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AnswerOverlay extends StatefulWidget {
@@ -9,7 +11,19 @@ class AnswerOverlay extends StatefulWidget {
   State createState() => new AnswerOverlayState();
 }
 
-class AnswerOverlayState extends State<AnswerOverlay> {
+class AnswerOverlayState extends State<AnswerOverlay> with SingleTickerProviderStateMixin {
+  Animation<double> _iconAnimation;
+  AnimationController _iconAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _iconAnimationController = new AnimationController(duration: new Duration(seconds: 2), vsync: this);
+    _iconAnimation = new CurvedAnimation(parent: _iconAnimationController, curve: Curves.elasticOut);
+    _iconAnimation.addListener(() => this.setState(() {}));
+    _iconAnimationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Material(
@@ -24,7 +38,10 @@ class AnswerOverlayState extends State<AnswerOverlay> {
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
-              child: new Icon(widget._isCorrect == true ? Icons.done : Icons.clear, size: 80.0,),
+              child: new Transform.rotate(
+                  angle: _iconAnimation.value * 2 * pi,
+                  child: new Icon(widget._isCorrect == true ? Icons.done : Icons.clear, size: _iconAnimation.value * 80.0,),
+              )
             ),
             new Padding(
                 padding: new EdgeInsets.only(bottom: 20.0),
