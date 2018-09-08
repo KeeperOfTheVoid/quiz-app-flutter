@@ -13,6 +13,34 @@ class QuizScreen extends StatefulWidget {
 }
 
 class QuizScreenState extends State<QuizScreen> {
+  Question currentQuestion;
+  Quiz quiz = new Quiz([
+    new Question("Pizza is nice", true),
+    new Question("Fluter is awesome", true),
+    new Question("Making apps is hard", false)
+  ]);
+
+  String questionText;
+  int questionNumber;
+  bool isCorrect;
+  bool isOverlayVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    currentQuestion = quiz.nextQuestion;
+    questionText = currentQuestion.question;
+    questionNumber = quiz.questionNumber;
+  }
+
+  void handleAnswer(bool answer) {
+    isCorrect = (currentQuestion.answer == answer);
+    quiz.answer(isCorrect);
+    this.setState(() {
+      isOverlayVisible = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Stack(
@@ -21,12 +49,12 @@ class QuizScreenState extends State<QuizScreen> {
         new Column(
           // This is our main screen
           children: <Widget>[
-            new AnswerButton(true, () => print("You answered true")),
-            new QuestionText("Pizza is nice", 1),
-            new AnswerButton(false, () => print("You answered false"))
+            new AnswerButton(true, () => handleAnswer(true)), // True Button
+            new QuestionText(questionText, questionNumber),
+            new AnswerButton(false, () => handleAnswer(false)) // False button
           ],
         ),
-        new AnswerOverlay(true)
+        isOverlayVisible == true ? new AnswerOverlay(isCorrect) : new Container()
       ],
     );
   }
