@@ -7,6 +7,8 @@ import '../ui/answer_button.dart';
 import '../ui/question_text.dart';
 import '../ui/answer_overlay.dart';
 
+import '../screens/score_screen.dart';
+
 class QuizScreen extends StatefulWidget {
   @override
   State createState() => new QuizScreenState();
@@ -57,6 +59,12 @@ class QuizScreenState extends State<QuizScreen> {
         isOverlayVisible == true ? new AnswerOverlay(
             isCorrect,
             () {
+              if (quiz.length == questionNumber) {
+                Navigator.of(context).push(
+                    new MaterialPageRoute(builder: (BuildContext context) => new ScoreScreen(quiz.score, quiz.length))
+                );
+                return;
+              }
               currentQuestion = quiz.nextQuestion;
               this.setState(() {
                 isOverlayVisible = false;

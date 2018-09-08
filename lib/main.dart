@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: new ScoreScreen(5, 10),
+      home: new QuizScreen(),
     );
   }
 }
